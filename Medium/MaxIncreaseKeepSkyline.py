@@ -4,13 +4,8 @@ class Solution(object):
         :type grid: List[List[int]]
         :rtype: int
         """
-        rmax = []
-        cmax = []
-        for i in grid:
-            rmax.append(max(i))
-        
-        for i in zip(*grid[::-1]):
-            cmax.append(max(i))
+        rmax = [max(row) for row in grid]
+        cmax = [max(col) for col in zip(*grid)]
         ret = 0
         for i in range(len(grid)):
             for j in range(len(grid[0])):
