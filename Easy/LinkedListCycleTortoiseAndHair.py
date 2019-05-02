@@ -14,10 +14,8 @@ class Solution(object):
             return False
         tortoise = head
         hair = head.next
-        while hair and tortoise and tortoise != hair:
-            try:
-                tortoise = tortoise.next
-                hair = hair.next.next
-            except AttributeError:
-                return False
+        while hair and hair.next and tortoise != hair:
+            tortoise = tortoise.next
+            hair = hair.next.next
         return tortoise == hair
+        
