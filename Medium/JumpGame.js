@@ -3,16 +3,13 @@
  * @return {boolean}
  */
 var canJump = function(nums) {
-    let possibilities = new Array(nums.length).fill(false);
-    possibilities[0] = true;
-    for (let i = 0; i < nums.length; i++) {
-        if (possibilities[i]) {
-            for (let j = 1; j <= nums[i]; j++) {
-                if (i + j < nums.length) {
-                    possibilities[i + j] = true
-                }
-            }
+    let furthest = 0;
+    let lastIndex = nums.length - 1;
+    for (let i = 0; i <= furthest && furthest <= lastIndex; i++) {
+        furthest = Math.max(furthest, i + nums[i]);
+        if (furthest >= lastIndex) {
+            return true;
         }
     }
-    return possibilities[possibilities.length - 1]
+    return furthest >= lastIndex;
 };
