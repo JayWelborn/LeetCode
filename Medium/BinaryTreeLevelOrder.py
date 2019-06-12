@@ -21,9 +21,9 @@ class Solution:
             current_level = next_level
             next_level = []
             for node in current_level:
-                if node and node.left:
+                if node.left:
                     next_level.append(node.left)
-                if node and node.right:
+                if node.right:
                     next_level.append(node.right)
                     
         return level_order
