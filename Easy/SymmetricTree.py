@@ -4,14 +4,26 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-from operator import xor
+
 class Solution:
     def isSymmetric(self, root: TreeNode) -> bool:
-        return self.mirror(root, root)
-    
-    def mirror(self, node1: TreeNode, node2: TreeNode) -> bool:
-        if not node1 and not node2:
-            return True
-        if not node1 or not node2:
-            return False
-        return node1.val == node2.val and self.mirror(node1.left, node2.right) and self.mirror(node1.right, node2.left)
+        def isMirror(left: TreeNode, right: TreeNode):
+            
+            # Two null values are mirrors
+            if left is None and right is None:
+                return True
+            
+            # If only one value is null, these trees do not mirror each other
+            if left is None or right is None:
+                return False
+            
+            # If the values are not equal, the trees do not mirror each other
+            if left.val != right.val:
+                return False
+            
+            # If left.left mirrors right.right, and left.right mirrors right.left,
+            # the subtrees mirror each other
+            return isMirror(left.left, right.right) and isMirror(left.right, right.left)
+            
+        return isMirror(root, root)
+        
