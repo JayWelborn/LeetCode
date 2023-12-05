@@ -1,0 +1,11 @@
+import math
+
+class Solution:
+    def numberOfMatches(self, n: int) -> int:
+        if n == 1:
+            return 0
+        if n == 2:
+            return 1
+        matches_this_round = n // 2
+        advancing = math.ceil(n / 2)
+        return matches_this_round + self.numberOfMatches(advancing)
