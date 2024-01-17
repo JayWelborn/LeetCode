@@ -3,5 +3,12 @@ class Solution:
         counter = defaultdict(int)
         for item in arr:
             counter[item] += 1
+
+        count_set = set()
         
-        return len(counter.values()) == len(set(counter.values()))
+        for count in counter.values():
+            if count in count_set:
+                return False
+            count_set.add(count)
+        
+        return True
