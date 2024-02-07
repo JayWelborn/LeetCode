@@ -11,3 +11,7 @@ class Solution:
                     break
         
         return self.alice_wins
+
+class CheeseSolution:
+    def divisorGame(self, n: int) -> bool:
+        return not n % 2
