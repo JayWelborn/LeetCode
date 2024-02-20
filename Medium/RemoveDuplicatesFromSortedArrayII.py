@@ -1,17 +1,16 @@
+from collections import defaultdict
+
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        write_index = 0
-        dup_count = 0
-        recent = None
-        for current in nums:
-            if recent == current:
-                dup_count += 1
-            else:
-                dup_count = 0
-            if dup_count > 1:
+        k, write_index = 0, 0
+        cache = defaultdict(int)
+
+        for read_index, num in enumerate(nums):
+            if cache[num] == 2:
                 continue
-            nums[write_index] = current
-            recent = current
+            cache[num] += 1
+            nums[write_index] = num
             write_index += 1
-          
-        return write_index
+            k += 1
+        
+        return k
